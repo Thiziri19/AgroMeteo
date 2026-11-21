@@ -116,37 +116,26 @@ fun Login( onLogin:()->Unit){
                     singleLine = true,
                     shape = MaterialTheme.shapes.medium,
                 )
-                Row(modifier = Modifier.padding(22.dp).fillMaxSize(),
+                Row(modifier = Modifier.padding(top =10.dp, bottom = 22.dp).fillMaxSize(),
                     horizontalArrangement = Arrangement.Absolute.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically) {
                     Text("Se souvenir de moi?", style = MaterialTheme.typography.bodyMedium)
                     Checkbox( checked = rememberChecked.value, onCheckedChange ={rememberChecked.value=it})
                 }
                 Button(
-//                    onClick = {
-//                        if (email.value.isBlank() || password.value.isBlank()) error.value = true
-//                        else {
-//                            sharedPreferncesManager.saveRemmeberMe(rememberChecked.value)
-//                            sharedPreferncesManager.saveLoggedIn(true)
-//                            if(rememberChecked.value) sharedPreferncesManager.saveUserEmail(email.value)
-//                            onLogin()}
-//                    },
 
                     onClick = {
                         if (email.value.isBlank() || password.value.isBlank()) {
                             error.value = true
                         } else {
                             error.value = false
-
                             sharedPreferncesManager.saveRemmeberMe(rememberChecked.value)
-
                             if (rememberChecked.value) {
                                 sharedPreferncesManager.saveUserEmail(email.value)
                                 sharedPreferncesManager.saveLoggedIn(true)
                             } else {
                                 sharedPreferncesManager.saveLoggedIn(false)
                             }
-
                             onLogin()
                         }
                     },
